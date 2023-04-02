@@ -1,0 +1,15 @@
+pb_ckeditor_list_styles_listStyles:
+  ckeditor5:
+    plugins: []
+    config: []
+  drupal:
+    label: List styles
+    class: Drupal\pb_ckeditor_list_styles\Plugin\CKEditor5Plugin\ListStyles
+    library: false
+    admin_library: false
+    elements:
+      - <ol class>
+      - <ul class>
+    conditions:
+      plugins:
+        - ckeditor5_list
