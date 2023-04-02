@@ -117,7 +117,7 @@ class ListStyles extends CKEditor5PluginDefault implements CKEditor5PluginConfig
       // Validate the selector ensure it is an anchor tag.
       $selector_matches = [];
       // @see https://www.w3.org/TR/CSS2/syndata.html#:~:text=In%20CSS%2C%20identifiers%20(including%20element,hyphen%20followed%20by%20a%20digit
-      if (!preg_match('/^(a)((\.[a-zA-Z0-9\x{00A0}-\x{FFFF}\-_]+)+)$/u', $selector, $selector_matches)) {
+      if (!preg_match('/^(ol|ul)((\.[a-zA-Z0-9\x{00A0}-\x{FFFF}\-_]+)+)$/u', $selector, $selector_matches)) {
         $unparseable_lines[$index + 1] = $line;
         continue;
       }
@@ -175,7 +175,15 @@ class ListStyles extends CKEditor5PluginDefault implements CKEditor5PluginConfig
         continue;
       }
 
-      $config['link']['decorators'][] = [
+      $config['bulletedList']['decorators'][] = [
+        'mode' => 'manual',
+        'label' => $style['label'],
+        'attributes' => [
+          'class' => implode(' ', $classes),
+        ],
+      ];
+
+      $config['numberedList']['decorators'][] = [
         'mode' => 'manual',
         'label' => $style['label'],
         'attributes' => [
@@ -183,6 +191,9 @@ class ListStyles extends CKEditor5PluginDefault implements CKEditor5PluginConfig
         ],
       ];
     }
+
+    //bulletedList
+    //numberedList
 
     return $config;
   }

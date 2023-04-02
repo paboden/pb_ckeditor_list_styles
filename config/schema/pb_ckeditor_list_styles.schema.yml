@@ -1,0 +1,29 @@
+# Plugin \Drupal\pb_ckeditor_list_styles\Plugin\CKEditor5Plugin\ListStyles
+ckeditor5.plugin.pb_ckeditor_list_styles_listStyles:
+  type: mapping
+  label: List Styles
+  mapping:
+    styles:
+      type: sequence
+      label: 'Styles'
+      constraints:
+        UniqueLabelInList:
+          labelKey: label
+      sequence:
+        type: mapping
+        label: 'List Style'
+        mapping:
+          label:
+            type: label
+            label: 'List style label'
+          element:
+            type: ckeditor5.element
+            constraints:
+              # Validate that this contains exactly 1 attribute (class) and >=1 class attr value.
+              CKEditor5Element:
+                requiredAttributes:
+                  -
+                    attributeName: class
+                    minAttributeValueCount: 1
+              StyleSensibleElement: []
+            label: 'Style tag + classes'
